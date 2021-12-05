@@ -1,3 +1,16 @@
+# Create project
+yarn create react-app . --template typescript
+
+
+
+
+
+***
+
+git ignore extension to right-click add files & folders to VS
+
+***
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
