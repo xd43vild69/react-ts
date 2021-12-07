@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './css/default.css'
+import './css/layaout.css'
 
 ReactDOM.render(
   <React.StrictMode>
