@@ -2,6 +2,8 @@ import React from "react";
 import Slide from "react-reveal";
 
 export const Resume = (props) => {
+  if (props.data === undefined) return null;
+
   const getRandomColor = () => {
     let letters = "0123456789ABCDEF";
     let color = "#";
@@ -11,7 +13,7 @@ export const Resume = (props) => {
     return color;
   };
 
-  const education = props.data.education.map(() => {    
+  const education = props.data.education.map((education) => {
     return (
       <div>
         <h3 key={education.school}>{education.school}</h3>
@@ -24,7 +26,7 @@ export const Resume = (props) => {
     );
   });
 
-  const work = this.props.data.work.map(() => {
+  const work = props.data.work.map((work) => {
     return (
       <div key={work.company}>
         <h3>{work.company}</h3>
@@ -37,7 +39,7 @@ export const Resume = (props) => {
     );
   });
 
-  const skills = this.props.data.skills.map((skills) => {
+  const skills = props.data.skills.map((skills) => {
     const backgroundColor = getRandomColor();
     const className = "bar-expand " + skills.name.toLowerCase();
     const width = skills.level;
@@ -50,10 +52,10 @@ export const Resume = (props) => {
     );
   });
 
-//   const skillmessage = {props.data.skillmessage};
+  const skillmessage = props.data.skillmessage;
 
-  return (    
-    <section id="resume">
+  return (
+    <section>
       <Slide left duration={1300}>
         <div className="row education">
           <div className="three columns header-col">
@@ -90,7 +92,7 @@ export const Resume = (props) => {
           </div>
 
           <div className="nine columns main-col">
-            {/* <p>{skillmessage}</p> */}
+            <p>{skillmessage}</p>
 
             <div className="bars">
               <ul className="skills">{skills}</ul>

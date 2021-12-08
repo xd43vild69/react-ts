@@ -2,7 +2,11 @@ import React from "react";
 import Fade from "react-reveal";
 
 export const Footer = (props) => {
-  const networks = props.data.social.map(() => {
+  if (!props.data) return null;
+
+  console.log(props.data.social);
+
+  const networks = props.data.social.map((networks) => {
       return (
           <li key={networks.name}>
               <a href={networks.url}>
@@ -17,7 +21,7 @@ export const Footer = (props) => {
       <div className="row">
         <Fade bottom>
           <div className="twelve columns">
-            <ul className="social-links">{props.data.networks}</ul>
+            <ul className="social-links">{networks}</ul>
 
             <ul className="copyright">
               <li>&copy; Copyright 2021 Nordic Giant</li>

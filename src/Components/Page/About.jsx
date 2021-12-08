@@ -4,8 +4,8 @@ import Fade from "react-reveal";
 export const About = (props) => {
   if (props.data === undefined) return null;
   return (
-    <section id="about">
-      <Fade duration={1000}>
+    <section >
+      {/* <Fade duration={1000}> */}
         <div className="row">
           <div className="three columns">
             <img
@@ -45,7 +45,7 @@ export const About = (props) => {
             </div>
           </div>
         </div>
-      </Fade>
+      {/* </Fade> */}
     </section>
   );
 };

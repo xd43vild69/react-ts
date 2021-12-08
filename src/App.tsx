@@ -1,9 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import './App.css';
-import { Manager } from './Components/Todo/Manager'
+// import { Manager } from './Components/Todo/Manager'
 import Header from './Components/Page/Header'
 import { About } from './Components/Page/About'
 import { Resume } from './Components/Page/Resume';
+import { Portafolio } from './Components/Page/Portafolio';
+import { Contact } from './Components/Page/Contact';
+import { Footer } from './Components/Page/Footer';
 export interface IData {
   main: string;
 }
@@ -11,34 +14,48 @@ export interface IData {
 const App: FC = () => {
 
   const [data, setData] = useState<IData>();
-  const [resource, setResource] = useState<string>("main");
+  const [resume, setResume] = useState<IData>();
+  const [portafolio, setPortafolio] = useState<IData>();
 
   useEffect(() => {
     const getTask = async () => {
       const dataFromServer = await fetchData();
       setData(dataFromServer);
+      const resumeFromServer = await fetchDataResume();
+      setResume(resumeFromServer);
+      const portafolioFromServer = await fetchDataPortafolio();
+      setPortafolio(portafolioFromServer);
     }
     getTask();
   }, [])
 
   const fetchData = async () => {
-    const res = await fetch(`http://localhost:3000/${resource}`);
+    const res = await fetch(`http://localhost:3000/main`);
+    const data: IData = await res.json();
+    return data;
+  }
+
+  const fetchDataResume = async () => {
+    const res = await fetch(`http://localhost:3000/resume`);
+    const data: IData = await res.json();
+    return data;
+  }
+
+  const fetchDataPortafolio = async () => {
+    const res = await fetch(`http://localhost:3000/portfolio`);
     const data: IData = await res.json();
     return data;
   }
 
   return (
     < div className="App" >
-      <header className="App-header">
-        <h1>React with TS</h1>
-      </header>
       {/* <Manager></Manager> */}
       <Header data={data}></Header>
       <About data={data} ></About>
-      {/* <Resume data={data} /> */}
-      {/* <Portfolio data={this.state.resumeData.portfolio} />
-      <Contact data={this.state.resumeData.main} />
-      <Footer data={this.state.resumeData.main} /> */}
+      <Resume data={resume} />
+       <Portafolio data={portafolio} />
+      <Contact data={data} />
+      <Footer data={data} /> 
     </div >
   );
 }
