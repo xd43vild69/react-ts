@@ -2,6 +2,7 @@ import React from "react";
 import Fade from "react-reveal";
 
 export const About = (props) => {
+  if (props.data === undefined) return null;
   return (
     <section id="about">
       <Fade duration={1000}>
@@ -15,7 +16,6 @@ export const About = (props) => {
           </div>
           <div className="nine columns main-col">
             <h2>About Me</h2>
-
             <p>{props.data.bio}</p>
             <div className="row">
               <div className="columns contact-details">
@@ -26,7 +26,8 @@ export const About = (props) => {
                   <span>
                     {props.data.address.street}
                     <br />
-                    {props.data.address.city} {props.data.address.state}, {props.data.address.zip}
+                    {props.data.address.city} {props.data.address.state},{" "}
+                    {props.data.address.zip}
                   </span>
                   <br />
                   <span>{props.data.phone}</span>
