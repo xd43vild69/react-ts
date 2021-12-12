@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Fade, Slide } from "react-reveal";
+import "flatpickr/dist/themes/light.css";
+import Flatpickr from "react-flatpickr";
 
 export const Contact = (props) => {
-    if (!props.data) return null; 
+  const [date, setDate] = React.useState("");
+  const datepickerRef = React.createRef();
+
+  if (!props.data) return null;
   const handleChange = () => {
-      console.log("xxx");
+    console.log("xxx");
   };
 
+  const options = {
+    enableTime: false,
+    dateFormat: "d-m-Y",
+    minDate:"01-01-2021"
+  };
   return (
     <section id="contact">
       <Fade bottom duration={1000}>
@@ -66,6 +76,33 @@ export const Contact = (props) => {
                     name="contactSubject"
                     onChange={handleChange}
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="contactDate">Date</label>
+                  <Flatpickr
+                    placeholder="Select date"
+                    ref={datepickerRef}
+                    options={options}                    
+                    value={""}
+                    onChange={(date, dateStr) => {
+                      let selectedDate = date[0];
+                      let currentDate = new Date();
+                      let selectedDateWithCurrentTime = new Date(
+                        selectedDate.setHours(
+                          currentDate.getHours(),
+                          currentDate.getMinutes(),
+                          currentDate.getSeconds()
+                        )
+                      );
+                      console.log(
+                        "selectedDateWithCurrentTime",
+                        selectedDateWithCurrentTime
+                      );
+                      setDate(selectedDateWithCurrentTime);
+                    }}
+                  />
+                  {/* {date && <p>{`Selected Date = ${date}`}</p>} */}
                 </div>
 
                 <div>

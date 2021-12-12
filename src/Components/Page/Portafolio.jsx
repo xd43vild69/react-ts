@@ -12,7 +12,7 @@ export const Portafolio = (props) => {
   const projects = props.data.projects.map((project) => {
     let id = 0;
     const projectImage = "images/portafolio/" + project.image;
-    console.log(projectImage);
+    
     return (
       <div key={id++} className="columns portafolio-item">
         <div className="item-wrap">
